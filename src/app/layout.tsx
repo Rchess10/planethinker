@@ -1,8 +1,13 @@
-import * as React from 'react';
+import * as React from      <body className={inter.className}>
+          <Header />
+          <main className="min-h-screen pt-16 bg-white">
+            {children}
+          </main>
+          <Footer />
+      </body>
 import { Inter } from 'next/font/google';
 import './globals.css';
 import type { Metadata } from 'next';
-import { ThemeProvider } from '@/components/theme-provider';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 
@@ -19,11 +24,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="fr" suppressHydrationWarning>
       <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           <Header />
-          <main className="min-h-screen pt-16">
+          <main className="min-h-screen pt-16 bg-white">
             {children}
           </main>
           <Footer />

@@ -2,32 +2,27 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { useTheme } from 'next-themes';
 import { Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { SunIcon, MoonIcon } from '@heroicons/react/24/solid';
 
 const navigation = [
-  { name: 'Videos', href: '/videos' },
-  { name: 'Podcasts', href: '/podcasts' },
-  { name: 'Analysis', href: '/analysis' },
-  { name: 'About', href: '/about' },
+  { name: 'Qui sommes-nous', href: '/qui-sommes-nous' },
+  { name: 'Publications', href: '/publications' },
+  { name: 'Thématiques', href: '/thematiques' },
+  { name: 'Événements', href: '/evenements' },
+  { name: 'Contribuer', href: '/contribuer' },
 ];
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { theme, setTheme } = useTheme();
-
-  const toggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark');
-  };
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 bg-background/80 backdrop-blur">
-      <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+    <header className="fixed inset-x-0 top-0 z-50 bg-white shadow-md">
+      <nav className="flex items-center justify-between p-4 lg:px-8 max-w-7xl mx-auto" aria-label="Global">
         <div className="flex lg:flex-1">
           <Link href="/" className="-m-1.5 p-1.5">
-            <span className="text-2xl font-bold text-primary">Planethinker</span>
+            <span className="text-3xl font-bold text-green-700">Planethinker</span>
+            <p className="text-sm text-gray-600 mt-1">Le think tank de la transition écologique</p>
           </Link>
         </div>
         <div className="flex lg:hidden">
@@ -45,28 +40,24 @@ export function Header() {
             <Link
               key={item.name}
               href={item.href}
-              className="text-sm font-semibold leading-6 text-foreground hover:text-primary transition-colors"
+              className="text-sm font-semibold leading-6 text-gray-700 hover:text-green-700 transition-colors uppercase tracking-wide"
             >
               {item.name}
             </Link>
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <button
-            onClick={toggleTheme}
-            className="rounded-lg p-2 hover:bg-primary/10 transition-colors"
+          <a
+            href="/contact"
+            className="text-sm font-semibold leading-6 text-green-700 hover:text-green-600"
           >
-            {theme === 'dark' ? (
-              <SunIcon className="h-5 w-5 text-foreground" />
-            ) : (
-              <MoonIcon className="h-5 w-5 text-foreground" />
-            )}
-          </button>
+            Contact <span aria-hidden="true">→</span>
+          </a>
         </div>
       </nav>
       <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
         <div className="fixed inset-0 z-50" />
-        <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-background px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-foreground/10">
+        <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm shadow-xl">
           <div className="flex items-center justify-between">
             <Link href="/" className="-m-1.5 p-1.5">
               <span className="text-2xl font-bold text-primary">Planethinker</span>
@@ -87,29 +78,19 @@ export function Header() {
                   <Link
                     key={item.name}
                     href={item.href}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-foreground hover:bg-primary/10"
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-700 hover:bg-green-50 hover:text-green-700 uppercase tracking-wide"
                   >
                     {item.name}
                   </Link>
                 ))}
               </div>
               <div className="py-6">
-                <button
-                  onClick={toggleTheme}
-                  className="flex w-full items-center gap-x-2 rounded-lg px-3 py-2 text-base font-semibold leading-7 text-foreground hover:bg-primary/10"
+                <a
+                  href="/contact"
+                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-green-700 hover:bg-green-50"
                 >
-                  {theme === 'dark' ? (
-                    <>
-                      <SunIcon className="h-5 w-5" />
-                      Light Mode
-                    </>
-                  ) : (
-                    <>
-                      <MoonIcon className="h-5 w-5" />
-                      Dark Mode
-                    </>
-                  )}
-                </button>
+                  Contact
+                </a>
               </div>
             </div>
           </div>
